@@ -38,6 +38,7 @@ class _TopRatedPageState extends State<TopRatedPage> {
               },
             );
           }
+
           return const Center(
             child: CircularProgressIndicator(),
           );

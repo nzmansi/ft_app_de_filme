@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/pages/home/widgets/movies_horizontal_list.dart';
 import 'package:movie_app/pages/home/widgets/nowplaying_list.dart';
@@ -30,7 +31,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movie App'),
+        title: const Text(
+          'FILMIFY',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,10 +46,10 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Now Playing',
                   style: TextStyle(
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20,
-                  ),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic),
                 ),
               ),
               FutureBuilder<Result>(
@@ -62,14 +66,12 @@ class _HomePageState extends State<HomePage> {
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Text(
-                  'Popular',
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20,
-                  ),
-                ),
+                child: Text('Popular',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    )),
               ),
               FutureBuilder<Result>(
                 future: popular,
@@ -82,14 +84,12 @@ class _HomePageState extends State<HomePage> {
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Text(
-                  'Upcoming',
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20,
-                  ),
-                ),
+                child: Text('Upcoming',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    )),
               ),
               FutureBuilder<Result>(
                 future: upcomingFuture,
