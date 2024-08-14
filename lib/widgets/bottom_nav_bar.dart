@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:movie_app/pages/home/home_page.dart';
 import 'package:movie_app/pages/search/search_page.dart';
 import 'package:movie_app/pages/top_rated/top_rated_page.dart';
@@ -11,44 +12,36 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int paginaAtual = 0;
-  PageController pc = PageController(initialPage: 0);
-
+  PageController pageController = PageController();
+  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: PageView(
-          controller: pc,
-          onPageChanged: (page) {
-            setState(() {
-              paginaAtual = page;
-            });
-          },
-          children: const [
-            HomePage(),
-            SearchPage(),
-            TopRatedPage(),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: paginaAtual,
-          iconSize: 30,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.trending_up), label: 'Top Hated'),
-          ],
-          onTap: (pagina) {
-            pc.animateToPage(
-              pagina,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.ease,
-            );
-          },
-        ),
+    return Scaffold(
+      body: PageView(
+        controller: pageController,
+        children: const [
+          HomePage(),
+          SearchPage(),
+          TopRatedPage(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPage,
+        iconSize: 30.0,
+        selectedItemColor: Colors.red,
+        onTap: (int index) {
+          pageController.animateToPage(index,
+              duration: const Duration(milliseconds: 400), curve: Curves.ease);
+          setState(() {
+            currentPage = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.trending_up), label: "Top Rated")
+        ],
       ),
     );
   }
